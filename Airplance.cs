@@ -8,7 +8,7 @@ namespace VehicleGarage
     {
         public Airplane(string regNo, string color, int numberOfWheels, int numberOfEngine) : base(regNo, color, numberOfWheels)
         {
-            NumberOfEngine = numberOfEngine
+            NumberOfEngine = numberOfEngine;
 
         }
         public int NumberOfEngine { get; }

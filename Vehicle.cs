@@ -11,20 +11,20 @@ namespace VehicleGarage
         protected int numberOfWheels;
         private bool park;
        // private bool unpark;
-        public Vehicle(string regNo,string color,int numberOfWheels,bool park)
+        public Vehicle(string regNo,string color,int numberOfWheels)
         {
             this.regNo = regNo;
             this.color = color;
             this.numberOfWheels = numberOfWheels;
-            this.park = park;
+           // this.park = park;
         }
 
 
-        public virtual bool Park(bool value)
-        {
-            park = value;
-            return park;
-        }
+        //public virtual bool Park(bool value)
+        //{
+        //    park = value;
+        //    return park;
+        //}
         // public virtual bool Unpark()
         //{
         //    unpark = true;
