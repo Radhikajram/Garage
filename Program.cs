@@ -22,14 +22,15 @@ namespace VehicleGarage
 
         internal static void WelcomeGarageOptions()
         {
-            GarageMethods garagemethod = new GarageMethods();
+         GarageHandler garagemethod = new GarageHandler();
 
 
             string regno;
             string color;
             int numberOfWheels;
+            bool continueFlag = true;
            
-            while (true)
+            while (continueFlag)
             {
                 Console.WriteLine("Enter your choice ");
                 char input = Console.ReadLine()[0];
@@ -39,6 +40,8 @@ namespace VehicleGarage
                     case '1':
                         int gargeSize = UI.GetGarageSize();
                         garagemethod.CreateGarage(gargeSize);
+                        Console.WriteLine($"Created garage with capacity : {garagemethod.GetCapacityOfArray()}");
+                        
                          break;
                     case '2':
                         regno = UI.AskForString("Regno: ");
@@ -66,37 +69,30 @@ namespace VehicleGarage
                                  break;
                             case "5":
                                 var length = UI.AskForInt("Enter Boat Length: ");
-                                garagemethod.garage.Add(new Boat(regno, color, numberOfWheels, length));
+                                garagemethod.ParkVehicleInGarage(new Boat(regno, color, numberOfWheels, length));
                                 break;
 
                         }
                         break;
-                    case '3': 
+                    case '3': garagemethod.ListGarageVehicles(); break;
+
+                    case '7': var vehicleColor = UI.AskForString(" Enter the Color of Vehicle of your choice To search  : ");
+                              var vehicleWheels = UI.AskForInt(" Enter the No.Of Wheels of Vehicle of your choice  To search: ");
+                              garagemethod.FindVehicleByColor(vehicleColor, vehicleWheels); break;
+
+                    case '9': continueFlag = false;break;
+                     
+
+
 
                 }
             }
 
         }
         
-            // garagemethod.garage.Add(new Airplane("A1234", "White", 8, 8));
+        
        
 
     }
 }
-        //    private static void CreateGarageSize(int garageSize)
-        //    {
-
-
-
-        //        //{
-        //        //    new Airplane("A1234","White",8,8),
-        //        //    new Motorcycle("M1234","Red",2,"260cc"),
-        //        //    new Car("C1234","Red",4,"Petrol"),
-        //        //    new Bus("B1234","Blue",4,60),
-        //        //    new Boat("BT1234","Yellow",0,180),    
-        //        //
-        //    }
-
-        //    private 
-        //}
-    
+       

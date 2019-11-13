@@ -5,47 +5,50 @@ using System.Text;
 
 namespace VehicleGarage
 {
-    public class Garage<T> : IEnumerable<T>​  where T : Vehicle
+   
+    public class Garage<T> : IEnumerable<T> where T : Vehicle
     {
         private int capacity;
-        private List<T> list;
+        public Vehicle[] vehicles;
 
+        public int Count { get; set; }
         public Garage(int capacity)
         {
             this.capacity = Math.Max(0, capacity);
-            list = new List<T>(capacity);
+            vehicles = new Vehicle[this.capacity];
+            Count = 0;
 
+            //list = new List<T>(capacity);
+            
         }
         bool IsFull; 
-        public virtual bool Add(T item)
-        {
-            if (IsFull) return false;
-
-            list.Add(item);
-
-            return true;
+        public  void Add(T item)
+          {
+             vehicles[Count] = item;
+             Count++;
+         //   if (IsFull) return false;
+           
+         //   return true;
 
         }
 
-        //internal void Add(Airplane airplane)
-        //{
-        //    throw new NotImplementedException();
-        //}
-    
+        public int CountOfArray()
+        {
+            return vehicles.Length;
+        }
         public IEnumerator<T> GetEnumerator()
         {
-            foreach (T item in list)
+            foreach (T item in vehicles)
 
             {
-
-                yield return item;
+                 yield return item;
 
             }
         }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+        //IEnumerator IEnumerable.GetEnumerator()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

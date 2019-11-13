@@ -6,29 +6,23 @@ namespace VehicleGarage
 {
     public class Vehicle
     {
-        protected string regNo;
-        protected string color;
-        protected int numberOfWheels;
-        private bool park;
+        //protected string regNo;
+        //protected string color;
+        //protected int numberOfWheels;
+        //private bool park;
        // private bool unpark;
         public Vehicle(string regNo,string color,int numberOfWheels)
         {
-            this.regNo = regNo;
-            this.color = color;
-            this.numberOfWheels = numberOfWheels;
+                Regno = regNo;
+                Color = color;
+                NumberOfWheels = numberOfWheels;
            // this.park = park;
         }
 
+        public string Regno { get; set; }
+        public string Color { get; set; }
 
-        //public virtual bool Park(bool value)
-        //{
-        //    park = value;
-        //    return park;
-        //}
-        // public virtual bool Unpark()
-        //{
-        //    unpark = true;
-        //    return unpark;
-        //}
-}
+        public int NumberOfWheels { get; set; }
+
+    }
 }

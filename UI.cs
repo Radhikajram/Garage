@@ -13,13 +13,14 @@ namespace VehicleGarage
         {
             Console.WriteLine(" Wlecome to Garage Management ");
             Console.WriteLine("1-Create a new garage with a specific size");
-            Console.WriteLine("2-Part Vehicles to Garage");
+            Console.WriteLine("2-Park Vehicles to Garage");
             Console.WriteLine("3-List all parked vehicles");
             Console.WriteLine("4-List all vehicle types currently parked in the garage and how many of each kind");
-            Console.WriteLine("5-Park and unpark specific vehicles from the garage");
+            Console.WriteLine("5-Unpark specific vehicles from the garage");
             Console.WriteLine("6-Set a maximum capacity of your garage");
-            Console.WriteLine("7-Find vehicles");
+            Console.WriteLine("7-Find vehicles by Color and Number of Wheels");
             Console.WriteLine("8-Find vehicle by Regno");
+            Console.WriteLine("9-Quit");
 
         }
 
