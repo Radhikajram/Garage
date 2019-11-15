@@ -85,24 +85,36 @@ namespace VehicleGarage
                         if (gargeSize > 0)
                             garagemethod.ListGarageVehicles();
                         else
+                            Console.WriteLine("Set the size of Garage.!!  ");
+                        break;
+                    case '4':
+                        if (gargeSize > 0)
+                            garagemethod.ListVehicleCount();
+                        else
+                            Console.WriteLine("Set the size of Garage.!! ");
+                        break;
+                    case '5':
+                        if (gargeSize > 0)
+                        {
+                            var inputRegno = UI.AskForString("Enter Regno of the Vehicle to be Unparked :");
+                            garagemethod.UnParkVehicles(inputRegno);
+                        }
+                        else
                             Console.WriteLine("Set the Size of Garage ");
                         break;
-                    case '5': var inputRegno = UI.AskForString("Enter Regno of the Vehicle to be Unparked :");
-                              garagemethod.Remove(inputRegno);
-                              break;
                     case '7':
                         if (gargeSize > 0)
                         {
                             var vehicleColor = UI.AskForString(" Enter the Color of Vehicle of your choice To search  : ");
                             var vehicleWheels = UI.AskForInt(" Enter the No.Of Wheels of Vehicle of your choice  To search: ");
-                            garagemethod.FindVehicleByColor(vehicleColor, vehicleWheels);
+                            garagemethod.FindVehicleByPropertyr(vehicleColor, vehicleWheels);
                         }
                         else
                             Console.WriteLine("Set the Size of Garage ");
                         break;
                     case '8':
                         var iRegno = UI.AskForString(" Enter Regno you want to search : ");
-                        garagemethod.FindByRegNo(iRegno); break;
+                        garagemethod.FindVehicleByRegNo(iRegno); break;
                     case '9': continueFlag = false;break;
                     
                     default: Console.WriteLine("Enter valid option"); break;

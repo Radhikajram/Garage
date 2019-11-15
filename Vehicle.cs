@@ -24,5 +24,12 @@ namespace VehicleGarage
 
         public int NumberOfWheels { get; set; }
 
+        public override string ToString()
+
+        {
+            return $"RegNo: {Regno} Color: {Color} Number of Wheels {NumberOfWheels}";
+
+        }
+
     }
 }

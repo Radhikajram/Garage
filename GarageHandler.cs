@@ -11,38 +11,57 @@ namespace VehicleGarage
     
         public Garage<Vehicle> gar;
 
+        
         public void ListGarageVehicles()
 
         {
-
-            var vehicleNotNull = gar.vehicles.Where(v => v!= null);
+            var vehicleNotNull = gar.Vehicles.Where(v => v != null);
 
             foreach (Vehicle item in vehicleNotNull)
             {
-                Console.WriteLine($"RegNo: {item.Regno} Color: {item.Color} Number of Wheels {item.NumberOfWheels} ");
+                Console.WriteLine(item.ToString());
+
             }
 
-            //
-            //var vehicleNull = gar.vehicles.Where(v => v == null);
-
-            var index = Array.FindIndex(gar.vehicles, i => i == null );
-
-            Console.WriteLine(index);
-
-
-            //int vehicleCount = gar.vehicles.Count(s => s != null);
-
-            //for (var i = 0; i < vehicleCount; i++)
-            //{
-            //    Console.WriteLine($"RegNo: {gar.vehicles[i].Regno} Color: {gar.vehicles[i].Color} Number of Wheels {gar.vehicles[i].NumberOfWheels} ");
-            //}
-
-
-            //gar.vehicles = gar.vehicles.Where(v => v != null));
-
-
-
+            if (vehicleNotNull.Count() == 0)
+            {
+                Console.WriteLine("Garage is empty !! ");
+            }
+            //gar.ListVehicles();
         }
+
+        public void ListVehicleCount()
+        {
+            var vehicleNotNull = gar.Vehicles.Where(v => v != null);
+
+            int countOfPlane = 0;
+            int countOfBus = 0;
+            int countOfBoat = 0;
+            int countOfMotorcycle = 0;
+            int countOfCar = 0;
+
+            foreach (var item in vehicleNotNull)
+            {
+
+                switch (item)
+                {
+                    case Airplane a: countOfPlane += 1; break;
+                    case Bus b: countOfBus += 1; break;
+                    case Motorcycle m: countOfMotorcycle += 1; break;
+                    case Car c: countOfCar += 1; break;
+                    case Boat bt: countOfBoat += 1; break;
+                }
+
+            }
+
+            Console.WriteLine($"Airplane : {countOfPlane} Bus : {countOfBus} Motorcycle : {countOfMotorcycle} Car : {countOfCar} Boat : {countOfBoat}");
+
+            if (vehicleNotNull.Count() == 0)
+            {
+                Console.WriteLine("Garage is empty !! ");
+            }
+        }
+        
 
         public void CreateGarage(int garageSize)
         {
@@ -52,73 +71,78 @@ namespace VehicleGarage
         
         public int GetCapacityOfArray()
         {
-            return gar.vehicles.Length;
+               return gar.GarageCapcity;
         }
 
-        //public void ParkVehicleInGarage(Vehicle vehicle)
-        //{
-        //    gar.Add(vehicle);
-        //}
-
-        public void Remove(string inpuRegno)
+        public void UnParkVehicles(string inpuRegno)
         {
-            var indexToRemove = 0;
-            try
+
+           bool success =  gar.Remove(inpuRegno);
+            if (success == true)
             {
-                indexToRemove = Array.FindIndex(gar.vehicles, row => (row.Regno == inpuRegno));
-                gar.vehicles = gar.vehicles.Where((source, index) => index != indexToRemove).ToArray();
                 Console.WriteLine(" Vehicle sucessfully unparked ");
             }
-            catch (NullReferenceException e)
-            {
-                Console.WriteLine("Vehicle not found in the Garage");
-            }
-           
+            else Console.WriteLine("Vehicle Not found !! "); ;
         }
 
         public void ParkVehicleInGarage(Vehicle item)
         {
-            var index = Array.IndexOf(gar.vehicles, null);
-
-            Console.WriteLine("insert at Index " + index);
-            //var index = Array.FindIndex(gar.vehicles, i => i == null );
-
-            gar.vehicles[index] = item;
-
-           
-        }
-
-        public void FindByRegNo(string inputRegno)
-        {
-            //try
-            //{
-                var vehicleByRegno = gar.vehicles.Where(v => (v.Regno.ToLower() == inputRegno.ToLower()));
-                foreach (Vehicle item in vehicleByRegno)
-                {
-                    Console.WriteLine($"RegNo: {item.Regno} Color: {item.Color} Number of Wheels {item.NumberOfWheels} ");
-                }
-            //}
-            //catch (NullReferenceException e)
-            //{
-            //    Console.WriteLine("Vehicle not found in the Garage");
-            //}
-        }
-        public void FindVehicleByColor(string inputColor, int inputWheelcount)
-        {
-            var vehicleByColor = gar.Where(v => ((v.Color == inputColor) && (v.NumberOfWheels == inputWheelcount)));
-
-            int vehicleCount = vehicleByColor.Count();
-
-            if (vehicleCount == 0)
+            bool success = gar.Add(item);
+            if (success == true)
             {
-                Console.WriteLine("Could not find any vehicle");
+                Console.WriteLine(" Vehicle sucessfully parked ");
             }
-            else
+            else Console.WriteLine(" Not having enough space to Park ");
+
+        }
+
+        public void FindVehicleByRegNo(string inputRegno)
+        {
+            {
+                try
+                {
+
+                    var vehicleByRegno = gar.Vehicles.Where(v => ((v != null) && (v.Regno.ToLower() == inputRegno.ToLower())));
+                    int vehicleCount = vehicleByRegno.Count();
+
+                    foreach (Vehicle item in vehicleByRegno)
+                    {
+
+                        Console.WriteLine(item.ToString());
+                    }
+
+                    if (vehicleCount == 0)
+                    {
+                        Console.WriteLine("Vehicle not found in garage");
+                    }
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine("Null Exception from Search on RegNo.");
+                }
+            }
+            //gar.FindByRegNo(inputRegno);
+        }
+        public void FindVehicleByPropertyr(string inputColor, int inputWheelcount)
+        {
+            try
+            {
+                var vehicleByColor =
+                gar.Vehicles.Where(v => ((v != null) &&(v.Color.ToLower() == inputColor.ToLower()) && (v.NumberOfWheels == inputWheelcount)));
                 foreach (Vehicle item in vehicleByColor)
                 {
-                    Console.WriteLine($"RegNo: {item.Regno} Color: {item.Color} Number of Wheels {item.NumberOfWheels} ");
+                    Console.WriteLine(item.ToString());
                 }
-            
+                if (vehicleByColor.Count() == 0)
+                {
+                    Console.WriteLine("Vehicle not found !!");
+                }
+            }
+            catch (NullReferenceException e)
+            {
+                Console.WriteLine("Null Exception from search on Vehicle By its Property");
+            }
+            // gar.FindVehicleByColor(inputColor, inputWheelcount);
 
         }
 

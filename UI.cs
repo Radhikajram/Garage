@@ -29,7 +29,7 @@ namespace VehicleGarage
             bool correct = true;
 
             string answer;
-            { 
+          do  { 
                 Console.WriteLine(prompt);
 
                 answer = Console.ReadLine();
@@ -58,7 +58,7 @@ namespace VehicleGarage
 
             int answer; 
 
-            {
+         do   {
 
                 string input = AskForString(prompt);
 

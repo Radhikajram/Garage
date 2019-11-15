@@ -10,43 +10,73 @@ namespace VehicleGarage
     public class Garage<T> : IEnumerable<T> where T : Vehicle
     {
         private int capacity;
-        public Vehicle[] vehicles;
+        private Vehicle[] vehicles;
 
-        public int Count { get; set; }
+      //  public int Count { get; set; }
+        public Vehicle[] Vehicles
+        {
+            get
+            {
+                return vehicles;
+            }
+        }
+
+        public bool IsAdded;
+        public bool IsRemoved;
         public Garage(int capacity)
         {
             this.capacity = Math.Max(0, capacity);
             vehicles = new Vehicle[this.capacity];
-
-            //for (int i = 0; i < vehicles.Length; i++)
-            //{
-            //    vehicles[i] = null;
-            //}
-            Count = 0;
+         //   Count = 0;
   
         }
-  
-        //public  void Add(T item)
-        //  {
+        
 
-        //    var index = Array.FindIndex(gar.vehicles, i => i == null);
+        public bool Add(Vehicle item)
+        {
+            try
+            {
+                var index = Array.IndexOf(vehicles, null);
 
-        //    //try
-        //    //{
+                vehicles[index] = item;
 
-        //    //    vehicles[Count] = item;
-        //    //    Count++;
-        //    //}
-        //    //catch (System.IndexOutOfRangeException e)  // CS0168
-        //    //{
-        //    //    System.Console.WriteLine(e.Message);
-        //    //    Console.WriteLine("Garage not having enough space to park vehicles");
+                return IsAdded = true;
+            }
+            catch(IndexOutOfRangeException e)
+            {
+                
+                return IsAdded = false;
+            }
 
-        //    //}
+        }
+        public int GarageCapcity 
+        { 
+            get
+            {
+                return this.capacity;
+            }
+        }
 
-        //}
+        public bool Remove(string inpuRegno)
+        {
+            var indexToRemove = 0;
+            try
+            {
+                indexToRemove = Array.FindIndex(vehicles, row => (row.Regno == inpuRegno));
+                vehicles[indexToRemove] = null;
+                return IsRemoved = true;
+            }
+            catch (NullReferenceException e)
+            {
+                return IsRemoved = false;
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                return IsRemoved = false;
+            }
 
-      
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             foreach (T item in vehicles)
@@ -56,10 +86,8 @@ namespace VehicleGarage
 
             }
         }
+
         IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
-        //IEnumerator IEnumerable.GetEnumerator()
-        //{
-        //    throw new NotImplementedException();
-        //}
+     
     }
 }

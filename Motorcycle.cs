@@ -4,7 +4,7 @@ using System.Text;
 
 namespace VehicleGarage
 {
-    class Motorcycle : Vehicle
+    public class Motorcycle : Vehicle
     {
         public Motorcycle(string regNo, string color, int numberOfWheels, string cylinderVolume) : base(regNo, color, numberOfWheels)
         {
