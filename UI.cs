@@ -87,6 +87,11 @@ namespace VehicleGarage
 
         }
 
+        internal static void Print(object sender, VehicleEventArgs e)
+        {
+            Console.WriteLine($"{ e.vehicle.Regno}, {e.Message}");
+        }
+
         internal static int  GetGarageSize()
         {
             Console.WriteLine("Enter the size of the garage you want to create : ");

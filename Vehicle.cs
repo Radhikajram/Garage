@@ -6,17 +6,13 @@ namespace VehicleGarage
 {
     public class Vehicle
     {
-        //protected string regNo;
-        //protected string color;
-        //protected int numberOfWheels;
-        //private bool park;
-       // private bool unpark;
+       
         public Vehicle(string regNo,string color,int numberOfWheels)
         {
-                Regno = regNo;
+                Regno = regNo.ToLower();
                 Color = color;
                 NumberOfWheels = numberOfWheels;
-           // this.park = park;
+        
         }
 
         public string Regno { get; set; }

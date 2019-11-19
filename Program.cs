@@ -11,16 +11,12 @@ namespace VehicleGarage
            
             // Call Welcome screen.
             UI.Mainmenu();
-            WelcomeGarageOptions();
+           NavigateGarageOptions();
 
         }
 
-        private static void ListAllParkedVehicles()
-        {
-            throw new NotImplementedException();
-        }
-
-        internal static void WelcomeGarageOptions()
+     
+        internal static void NavigateGarageOptions()
         {
          GarageHandler garagemethod = new GarageHandler();
 
@@ -34,6 +30,8 @@ namespace VehicleGarage
 
             while (continueFlag)
             {
+                try
+                {
                 Console.WriteLine("Enter your choice ");
                 char input = Console.ReadLine()[0];
 
@@ -123,12 +121,15 @@ namespace VehicleGarage
 
                 }
             }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine("Enter valid option from main menu " );   
+             }
+
+            }
 
         }
-        
-        
-       
-
+      
     }
 }
        
